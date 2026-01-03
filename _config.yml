@@ -1,0 +1,89 @@
+# Site Settings
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: "default"
+
+title: "Second-Order Effects"
+subtitle: "Strategy. Systems. Consequence."
+name: "Ray Djajadinata"
+description: "Leadership, technology, health, and compounding decisions."
+url: "https://rayfdj.github.io"
+baseurl: ""
+repository: "rayfdj/rayfdj.github.io"
+
+# Site Author
+author:
+  name: "Ray"
+  bio: "Software, systems, and the practice of explaining them in public."
+  location: ""
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/rayfdj"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/in/rayfdj"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope"
+      url: "mailto:ray dot djajadinata at google mail"
+
+# Site Settings
+locale: "en-US"
+words_per_minute: 200
+search: true
+search_full_content: false
+
+# Build Settings
+markdown: kramdown
+highlighter: rouge
+
+# Outputting
+permalink: /:title/
+paginate: 10
+paginate_path: /page:num/
+timezone: Asia/Jakarta
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-include-cache
+
+# Reading Files
+include: ["_pages"]
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .idea/
+  - .DS_Store
+  - README.md
+
+# Front Matter Defaults
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: false
+      share: true
+      related: true
+      show_date: true
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
