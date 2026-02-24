@@ -8,11 +8,11 @@ permalink: /about/
 This is my working record. It’s where I force myself to think clearly.
 
 I write about decisions and systems that compound over time. I start from business goals, then work backward through 
-incentives and behavior to understand why systems deliver the outcomes they do. Technology matters, sometimes it 
+incentives and behavior, to understand why systems deliver the outcomes they do. Technology matters, sometimes it 
 takes center stage, but it ultimately still serves human behavior and incentives. 
 
 Some of this comes from writing code. Most of it comes from the messy reality of building teams, losing (and making!) 
-money, and trying to stay healthy while doing it. Writing is the only way I know how to slow my brain down enough to 
+money, and trying to maximize healthspan while doing it. Writing is the only way I know how to slow my brain down enough to 
 verify if I actually understand what I'm talking about.
 
 ---
@@ -21,10 +21,10 @@ verify if I actually understand what I'm talking about.
 
 I started as a builder. Over time, my work expanded into leading teams, advising companies, investing, and speaking 
 publicly across different forums. I am often asked to help make sense of systems that look fine on paper but behave 
-very differently in reality.
+very differently--sometimes the opposite of what's intended!--in reality[^emdash].
 
-I care deeply about leverage. In organizations, capital, personal energy, and time. That lens shapes how I think 
-about AI, decision-making, and longevity.
+I care deeply about leverage. In organizations, capital, personal energy/health, and of course: time. That lens shapes 
+how I think about AI, decision-making, and healthspan/longevity.
 
 I also selectively spend time mentoring and advising people from various stages in their lives, who are navigating 
 growth, responsibility, and ambiguity in their work. For the longest time in my early career, I didn't really have a 
@@ -70,4 +70,6 @@ complex issues.
 
 ## Get in Touch
 
-If you want to explore working together, find me on [LinkedIn](https://linkedin.com/in/rayfdj). 
+If you want to explore working together, find me on [LinkedIn](https://linkedin.com/in/rayfdj).
+
+[^emdash]: It's sad that the emdash ("--") has become one of the telltales of AI writing. I'm so glad I became a published author well before that. Behold, my MSDN article "[Advanced Web Applications with Object-Oriented JavaScript](https://learn.microsoft.com/en-us/archive/msdn-magazine/2007/may/advanced-web-applications-with-object-oriented-javascript)", where I was already using emdashes in 2007. So, I've got receipts! Sadly, my articles from the late 90s are no longer online.
