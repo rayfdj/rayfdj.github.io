@@ -32,6 +32,18 @@ words_per_minute: 200
 search: true
 search_full_content: false
 
+# Comments (Giscus)
+comments:
+  provider: "giscus"
+  giscus:
+    repo_id: "R_kgDOJ-oCXA"
+    category_name: "Announcements"
+    category_id: "DIC_kwDOJ-oCXM4C3JQn"
+    discussion_term: "pathname"
+    reactions_enabled: "1"
+    theme: "light"
+    crossorigin: "anonymous"
+
 # Build Settings
 markdown: kramdown
 highlighter: rouge
@@ -46,7 +58,6 @@ timezone: Asia/Jakarta
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
 
@@ -76,7 +87,7 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: false
+      comments: true
       share: true
       related: true
       show_date: true
