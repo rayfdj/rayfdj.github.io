@@ -1,6 +1,6 @@
 ---
 title: "AI for Coding Just Crossed the Threshold. Here's Why You Should Care."
-date: 2026-02-24
+date: 2026-02-21
 tags:
   - ai
   - software-engineering
