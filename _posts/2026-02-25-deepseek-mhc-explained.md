@@ -38,13 +38,13 @@ People call these vanishing and exploding gradients, and for a long time they we
 
 ## ResNet: The Fix That Worked (Mostly)
 
-In 2015, [He et al.](https://arxiv.org/abs/1512.03385) proposed a deceptively simple idea: instead of asking each layer to learn a whole new transformation, let it learn a *correction* to its input, and always keep a clean shortcut path that carries information forward unchanged. These are residual (or skip) connections.
+In 2015, [He et al.](https://arxiv.org/abs/1512.03385) proposed a simple idea: instead of asking each layer to learn a whole new transformation, let it learn a *correction* to its input, and always keep a clean shortcut path that carries information forward unchanged. These are residual (or skip) connections.
 
 $$x_{l+1} = x_l + F_l(x_l)$$
 
 ![ResNet Residual Block](/assets/images/resnet-skip-connection.png){: .align-center }
 
-The $x_l$ term is the skip connection. The layer only needs to learn $F_l(x_l)$: the correction. Embarrassingly simple, but it changed everything.
+The $x_l$ term is the skip connection. The layer only needs to learn $F_l(x_l)$: the correction. That's it. And it worked absurdly well.
 
 The intuition is that skip connections make "do nothing" the default. If a block isn't sure what to do yet (especially early in training), it can keep $F_l(x_l) \approx 0$ and just pass $x_l$ through. A deep network no longer has to learn a fragile sequence of transformations just to preserve information. It can start as something close to an identity mapping, then gradually learn a stack of small improvements.
 
@@ -98,7 +98,7 @@ ResNet gives you a stable pass-through, but everything shares one stream. HC giv
 
 mHC's key idea: keep HC's routing flexibility, but constrain the skip-path mixing so it can't run away.
 
-The tool they reach for is a [**doubly stochastic matrix**](https://en.wikipedia.org/wiki/Doubly_stochastic_matrix). Sounds intimidating, but it's one of the simplest ideas in linear algebra. (The name is doing all the heavy lifting here.) A matrix is doubly stochastic if:
+The tool they reach for is a [**doubly stochastic matrix**](https://en.wikipedia.org/wiki/Doubly_stochastic_matrix). Sounds intimidating, but it's one of the simplest ideas in linear algebra. A matrix is doubly stochastic if:
 
 - Every entry is non-negative
 - Every row sums to 1
@@ -169,7 +169,7 @@ DeepSeek evaluated mHC on DeepSeek-V3-inspired MoE models at 3B, 9B, and 27B par
 
 mHC beats the baseline across all 8 benchmarks and beats HC on most of them. Not by a mile, but consistently. (The one exception: HC edges out mHC slightly on MATH.) And it does this while adding only **6.7% training overhead** at $n = 4$ streams.
 
-The stability gap is wild. HC's composite gain magnitude hits peaks around 3,000, while mHC keeps it bounded around ~1.6. In practice, that means mHC's training behavior (loss curves, gradient norms) stays comparable to the baseline, instead of HC's loss spikes and gradient instability.
+HC's composite gain magnitude hits peaks around 3,000, while mHC keeps it bounded around ~1.6. In practice, that means mHC's training behavior (loss curves, gradient norms) stays comparable to the baseline, instead of HC's loss spikes and gradient instability.
 
 ## Why This Matters
 
