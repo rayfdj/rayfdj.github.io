@@ -3,9 +3,7 @@ theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: "default"
 
 title: "Second-Order Effects"
-subtitle: "Strategy. Systems. Consequence."
 name: "Ray Djajadinata"
-description: "Leadership, technology, health, and compounding decisions."
 url: "https://rayfdj.dev"
 baseurl: ""
 repository: "rayfdj/rayfdj.github.io"

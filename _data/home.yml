@@ -1,12 +1,5 @@
 # Copy for the Broadsheet home page (_layouts/home.html).
 
-about:
-  heading: About this site
-  quote: This is my working record. It’s where I force myself to think clearly.
-  text: I write about decisions and systems that compound over time. I start from business goals, then work backward through incentives and behavior, to understand why systems deliver the outcomes they do.
-  link_label: More about Ray
-  link_url: /about/
-
 sections:
   heading: What you will find here
   items:

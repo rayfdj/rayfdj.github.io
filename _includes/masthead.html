@@ -1,11 +1,10 @@
 {% assign locale = include.locale | default: site.locale %}
 {% comment %}
   Broadsheet masthead. Included with include_cached, so it must not depend on `page`:
-  the home page shows the tagline and every other page shows the site title (see _broadsheet.scss).
+  the site title is hidden on the home page, where the nameplate shows it (see _broadsheet.scss).
 {% endcomment %}
 <header class="bs-masthead bs-wrap">
   <div class="bs-masthead__inner">
-    <p class="bs-masthead__tagline">{{ site.description }}</p>
     <a class="bs-masthead__title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
     <nav id="site-nav" class="bs-nav" aria-label="Primary navigation">
       <ul class="bs-nav__links">
