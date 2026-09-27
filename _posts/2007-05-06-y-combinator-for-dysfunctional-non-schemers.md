@@ -5,6 +5,7 @@ tags:
   - software-engineering
 toc: true
 toc_label: "Contents"
+mathjax: true
 ---
 
 A lot of software developers don't come from a Computer Science background. I think in the long run this doesn't matter, since I've seen a lot of CS grads who have completely forgotten things that are supposed to set them apart from the rest of us ("Lisp? You mean that AI language with a lot of parentheses? Yeah I used it before in uni. So?"). [Besides, a lot of CS grads can't program anyway](http://www.codinghorror.com/blog/archives/000781.html). Plus, if one really cares about the programming craft, during his/her journey of ever improving his/her efficiency and effectiveness as a software programmer, one tends to come full circle and go back to the root, which is made of the stuff CS grads are forced to read about in university.
@@ -274,7 +275,7 @@ var fibo = Y(function(f) {
 
 As such, there are two flavours of Y as well. The classic Y Combinator works when we're using normal order of evaluation, but will hang when the evaluation is applicative order (just like in JavaScript, which evaluates the arguments first before a function is called). This normal Y Combinator is defined as such in lambda calculus:
 
-**Y** = λf·(λx·f (x x)) (λx·f (x x))
+$$\mathbf{Y} = \lambda f{\cdot}(\lambda x{\cdot}f\ (x\ x))\ (\lambda x{\cdot}f\ (x\ x))$$
 
 which is closer to this:
 
@@ -289,7 +290,7 @@ function normalY(f) {
 
 Which will hang, obviously, if you think in the applicative order way of thinking. The Y we just derived earlier, on the other hand, is applicative order. Note the difference in lambda calculus definition (the difference is in bold italic):
 
-**Z** = λf. (λx. f (***λy***. x x ***y***)) (λx. f (***λy***. x x ***y***))
+$$\mathbf{Z} = \lambda f.\ (\lambda x.\ f\ (\boldsymbol{\lambda y}.\ x\ x\ \boldsymbol{y}))\ (\lambda x.\ f\ (\boldsymbol{\lambda y}.\ x\ x\ \boldsymbol{y}))$$
 
 and its corresponding JavaScript version:
 
