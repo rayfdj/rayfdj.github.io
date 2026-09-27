@@ -1080,7 +1080,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #1d1b17;
   color: #f5f1e8;
 
-  &::before {
+  &[data-lang]::before {
     border-bottom-color: rgba(245, 241, 232, 0.14);
     color: #b3a893;
   }
