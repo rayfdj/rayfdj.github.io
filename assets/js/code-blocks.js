@@ -8,6 +8,17 @@
 
   var blocks = document.querySelectorAll('.bs-prose div.highlighter-rouge, .bs-prose figure.highlight');
 
+  // Normally _plugins/code_block_labels.rb sets data-lang at build time; this covers pages built without it.
+  var NAMES = { js: 'JavaScript', javascript: 'JavaScript', ts: 'TypeScript', typescript: 'TypeScript',
+    py: 'Python', python: 'Python', rb: 'Ruby', ruby: 'Ruby', sh: 'Shell', bash: 'Shell', shell: 'Shell',
+    console: 'Console', terminal: 'Console', plaintext: '', text: '' };
+  function labelFor(block) {
+    var source = block.querySelector('code[data-lang]');
+    var match = (block.className.match(/language-([\w+#.-]+)/) || [])[1] || (source && source.getAttribute('data-lang')) || '';
+    if (Object.prototype.hasOwnProperty.call(NAMES, match)) return NAMES[match];
+    return match.charAt(0).toUpperCase() + match.slice(1);
+  }
+
   function copyText(text) {
     if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
     return new Promise(function (resolve, reject) {
@@ -35,6 +46,7 @@
   }
 
   blocks.forEach(function (block) {
+    if (!block.hasAttribute('data-lang')) block.setAttribute('data-lang', labelFor(block));
     var pre = block.querySelector('pre');
     var code = block.querySelector('td.rouge-code pre') || block.querySelector('pre code') || pre;
     if (!pre || !code) return;

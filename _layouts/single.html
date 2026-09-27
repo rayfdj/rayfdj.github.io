@@ -67,5 +67,5 @@ layout: default
     {% endif %}
   </article>
 </div>
-{% if content contains '<pre class="highlight">' or content contains '<figure class="highlight">' %}<script src="{{ '/assets/js/code-blocks.js' | relative_url }}" defer></script>{% endif %}
-{% if content contains 'role="doc-endnotes"' %}<script src="{{ '/assets/js/sidenotes.js' | relative_url }}" defer></script>{% endif %}
+{% if content contains '<pre class="highlight">' or content contains '<figure class="highlight">' %}<script src="{{ '/assets/js/code-blocks.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>{% endif %}
+{% if content contains 'role="doc-endnotes"' %}<script src="{{ '/assets/js/sidenotes.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>{% endif %}

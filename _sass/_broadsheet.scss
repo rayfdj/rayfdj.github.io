@@ -976,8 +976,9 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.65;
   overflow: hidden;
 
-  /* Header strip: the language on the left, the copy button (added by script) on the right */
-  &::before {
+  /* Header strip: the language on the left, the copy button (added by script) on the right.
+     Only for blocks that carry data-lang, so a page cached from before this existed stays tidy. */
+  &[data-lang]::before {
     content: attr(data-lang);
     display: block;
     height: 2.75rem;
