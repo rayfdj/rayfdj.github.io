@@ -2,7 +2,7 @@
 # _sass/_broadsheet.scss. Adds data-lang="<name>" to every block Rouge highlights, both
 # Markdown fences and {% highlight %} tags, using Rouge's own name for the language.
 
-require "cgi"
+require "cgi/escape" # CGI.escapeHTML; the rest of cgi is gone in Ruby 4
 require "rouge"
 
 module CodeBlockLabels
