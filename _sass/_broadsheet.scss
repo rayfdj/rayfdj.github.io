@@ -879,6 +879,27 @@ h1, h2, h3, h4, h5, h6 {
     background: none;
   }
 
+  div.highlighter-rouge,
+  figure.highlight {
+    margin: 1.6em 0;
+    border: 1px solid var(--bs-rule);
+    border-radius: 2px;
+    font-size: 0.75em;
+    line-height: 1.6;
+
+    > pre,
+    pre.highlight {
+      padding: 1.1em 1.3em;
+    }
+  }
+
+  .highlight,
+  .highlight pre,
+  .highlight code {
+    font-size: 1em;
+    line-height: inherit;
+  }
+
   mjx-container[display="true"] {
     max-width: 100%;
     overflow-x: auto;

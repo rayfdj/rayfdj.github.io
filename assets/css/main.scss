@@ -22,6 +22,24 @@ $link-color-visited: #8a2b17;
 $masthead-link-color: #1d1b17;
 $masthead-link-color-hover: #8a2b17;
 
+// Code blocks: a light, paper-toned syntax palette (base16 slots used by the theme's _syntax.scss).
+$base00: #ece6d8; // background
+$base01: #e3dccb;
+$base02: #d8cfbe;
+$base03: #8a8173;
+$base04: #6b6358; // comments
+$base05: #1d1b17; // default text
+$base06: #e3dccb; // highlighted line
+$base07: #1d1b17;
+$base08: #8a2b17; // errors, constants
+$base09: #7a4a00; // numbers, literals
+$base0a: #6b4e16; // types, classes
+$base0b: #276b31; // strings
+$base0c: #5e574c; // operators
+$base0d: #1f3a5f; // names, functions
+$base0e: #8a2b17; // keywords
+$base0f: #8a2b17;
+
 @import "minimal-mistakes/skins/default";
 @import "minimal-mistakes";
 @import "broadsheet";
