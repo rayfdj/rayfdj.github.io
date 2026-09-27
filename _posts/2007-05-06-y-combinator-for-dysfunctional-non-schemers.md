@@ -73,7 +73,7 @@ var fact = function(forRec, num) {
 
 Then when we want to use it, we just pass the name of the function to itself, like this:
 
-```
+```console
 js> fact(fact, 0)
 1.0
 js> fact(fact, 1)
@@ -105,13 +105,13 @@ var createFact = function(forRec) {
 
 In the snippet above, the outer anonymous function (the one with forRec as a parameter) returns another anonymous function (the one accepting parameter num). The latter is very similar to our original factorial function (remember that our objective is to separate the passing-function-to-itself bit from the factorial bit), except for the bit in green:
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #276b31;">(forRec(forRec))</span>(num - 1);</code></pre></div></div>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #276b31;">(forRec(forRec))</span>(num - 1);</code></pre></div></div>
 
 That line is where the inner function needs to recurse. But instead of requiring a name to recurse, it calls the outer function... which returns the inner function itself. And that returned inner function is in turn called, with "num - 1" as its argument. There we have our recursion.
 
 So now we have a slightly cleaner solution. We can use the outer function to create the inner function like this:
 
-```
+```console
 js> var factorial = createFact(createFact);
 js> factorial(10)
 3628800.0
@@ -119,7 +119,7 @@ js> factorial(10)
 
 Note that this is equivalent to this one-liner:
 
-```
+```console
 js> createFact(createFact)(10)
 3628800.0
 ```
@@ -166,7 +166,7 @@ var recur = function(forRec) {
 
 Then we use it like this:
 
-```
+```console
 js> var factorial = recur(recur);
 js> factorial(6)
 720.0
@@ -174,7 +174,7 @@ js> factorial(6)
 
 Or, as we've seen above:
 
-```
+```console
 js> recur(recur)(6)
 720.0
 ```
@@ -223,7 +223,7 @@ var recurWrapper = function(f) {
 
 Then we can use it like this:
 
-```
+```console
 js> recurWrapper(fact)(6);
 720.0
 ```
@@ -331,7 +331,7 @@ This definition is probably easier to understand because it uses JavaScript cons
 
 First of all, remember that in JavaScript, we can define and call a function at one go like this:
 
-```
+```console
 js> var y = function(x) { return x * x; }(2);
 js> y
 4.0
