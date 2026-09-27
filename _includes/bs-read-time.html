@@ -1,0 +1,4 @@
+{%- comment -%} Reading time for include.doc, using the same formula as the theme's page__meta.html. {%- endcomment -%}
+{%- assign bs_wpm = include.doc.words_per_minute | default: site.words_per_minute | default: 200 -%}
+{%- assign bs_words = include.doc.content | strip_html | number_of_words -%}
+{%- if bs_words <= bs_wpm -%}1 min read{%- else -%}{{ bs_words | divided_by: bs_wpm }} min read{%- endif -%}

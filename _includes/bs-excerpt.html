@@ -1,0 +1,16 @@
+{%- comment -%}
+  Summary for include.doc: its description, else its excerpt, cut to include.words words
+  with an ellipsis that replaces any trailing punctuation ("too." becomes "too…", not "too....").
+{%- endcomment -%}
+{%- assign bs_text = include.doc.description | default: include.doc.excerpt | markdownify | strip_html | strip | strip_newlines -%}
+{%- assign bs_short = bs_text | truncatewords: include.words, "" | strip -%}
+{%- if bs_short.size < bs_text.size -%}
+  {%- assign bs_last = bs_short | slice: -1, 1 -%}
+  {%- if bs_last == "." or bs_last == "," or bs_last == ";" or bs_last == ":" -%}
+    {%- assign bs_cut = bs_short.size | minus: 1 -%}
+    {%- assign bs_short = bs_short | slice: 0, bs_cut -%}
+  {%- endif -%}
+  {{- bs_short -}}…
+{%- else -%}
+  {{- bs_text -}}
+{%- endif -%}

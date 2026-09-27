@@ -1,0 +1,23 @@
+{% assign locale = include.locale | default: site.locale %}
+{% comment %}
+  Broadsheet masthead. Included with include_cached, so it must not depend on `page`:
+  the home page shows the tagline and every other page shows the site title (see _broadsheet.scss).
+{% endcomment %}
+<header class="bs-masthead bs-wrap">
+  <div class="bs-masthead__inner">
+    <p class="bs-masthead__tagline">{{ site.description }}</p>
+    <a class="bs-masthead__title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <nav id="site-nav" class="bs-nav" aria-label="Primary navigation">
+      <ul class="bs-nav__links">
+        {%- for link in site.data.navigation.main -%}
+        <li><a href="{{ link.url | relative_url }}">{{ link.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+      {% if site.search == true %}
+      <button class="search__toggle bs-nav__search" type="button" aria-label="{{ site.data.ui-text[locale].search_label | default: 'Toggle search' }}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+      </button>
+      {% endif %}
+    </nav>
+  </div>
+</header>

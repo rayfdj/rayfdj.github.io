@@ -1,11 +1,27 @@
 ---
 ---
 
+// Broadsheet palette and type, also applied to the theme's own components (search, tables, code).
+$serif: "Newsreader", Georgia, "Times New Roman", serif;
+$sans-serif: $serif;
+$global-font-family: $serif;
+$header-font-family: $serif;
+$caption-font-family: $serif;
+
+$background-color: #f5f1e8;
+$text-color: #1d1b17;
+$muted-text-color: #5e574c;
+$primary-color: #8a2b17;
+$border-color: #cfc6b4;
+$code-background-color: #ece6d8;
+$form-background-color: #ece6d8;
+$footer-background-color: #f5f1e8;
+$link-color: #8a2b17;
+$link-color-hover: #1d1b17;
+$link-color-visited: #8a2b17;
+$masthead-link-color: #1d1b17;
+$masthead-link-color-hover: #8a2b17;
+
 @import "minimal-mistakes/skins/default";
 @import "minimal-mistakes";
-
-hr {
-  border: 0;
-  border-top: 2px solid #888;
-  margin: 2em 0;
-}
+@import "broadsheet";

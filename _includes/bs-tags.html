@@ -1,0 +1,5 @@
+{%- comment -%} Tag list for kickers: "deep-learning" reads as "deep learning"; CSS sets the case. Pass link=true to link each tag to the Tags page. {%- endcomment -%}
+{%- for tag in include.tags -%}
+{%- if include.link -%}<a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag | replace: '-', ' ' }}</a>{%- else -%}{{ tag | replace: '-', ' ' }}{%- endif -%}
+{%- unless forloop.last %} · {% endunless -%}
+{%- endfor -%}

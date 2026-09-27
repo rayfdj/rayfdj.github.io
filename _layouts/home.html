@@ -1,0 +1,95 @@
+---
+layout: default
+---
+{%- comment -%}
+  Broadsheet front page: nameplate, the latest post as the lead story, the next few
+  alongside it, then the About band and the topics. Copy lives in _data/home.yml.
+{%- endcomment -%}
+{%- assign posts = site.posts | where_exp: "item", "item.hidden != true" -%}
+{%- assign home = site.data.home -%}
+
+<div id="main" role="main" class="bs-home">
+  <div class="bs-wrap">
+
+    <header class="bs-nameplate">
+      <h1 class="bs-nameplate__title"><span class="bs-nowrap">{{ site.title | split: " " | join: '</span> <span class="bs-nowrap">' }}</span></h1>
+      <p class="bs-dateline">
+        <span class="bs-dateline__side">{{ site.name }}</span>
+        <span class="bs-dateline__motto">{{ site.subtitle | remove: '.' | split: ' ' | join: ' · ' }}</span>
+        <span class="bs-dateline__side">{{ site.url | remove: 'https://' | remove: 'http://' }}</span>
+      </p>
+    </header>
+
+    {{ content }}
+
+    {% if paginator and paginator.page > 1 %}
+      <section class="bs-list" aria-label="Posts">
+        {% for post in paginator.posts %}
+          {% include archive-single.html %}
+        {% endfor %}
+      </section>
+      {% include paginator.html %}
+    {% elsif posts.size > 0 %}
+      {%- assign lead = posts.first -%}
+      <section class="bs-front" aria-label="Latest writing">
+        <article class="bs-lead">
+          <p class="bs-kicker">Latest{% if lead.tags.size > 0 %} · {% include bs-tags.html tags=lead.tags %}{% endif %}</p>
+          <h2 class="bs-lead__title"><a href="{{ lead.url | relative_url }}">{{ lead.title | markdownify | remove: '<p>' | remove: '</p>' | strip }}</a></h2>
+          <p class="bs-lead__dek">{{ lead.description | default: lead.excerpt | markdownify | strip_html | strip }}</p>
+          <p class="bs-byline">By {{ site.name }} · <time datetime="{{ lead.date | date_to_xmlschema }}">{{ lead.date | date: "%B %-d, %Y" }}</time> · {% include bs-read-time.html doc=lead %}</p>
+        </article>
+
+        {% if posts.size > 1 %}
+        <div class="bs-also">
+          {% for post in posts offset: 1 limit: 3 %}
+          <article class="bs-also__item">
+            <p class="bs-kicker">{% if forloop.first %}Also{% if post.tags.size > 0 %} · {% endif %}{% endif %}{% include bs-tags.html tags=post.tags %}</p>
+            <h2 class="bs-also__title"><a href="{{ post.url | relative_url }}">{{ post.title | markdownify | remove: '<p>' | remove: '</p>' | strip }}</a></h2>
+            <p class="bs-also__dek">{% include bs-excerpt.html doc=post words=32 %}</p>
+            <p class="bs-byline"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time> · {% include bs-read-time.html doc=post %}</p>
+          </article>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </section>
+
+      {% if posts.size > 4 %}
+      <section class="bs-more" aria-labelledby="bs-more-heading">
+        <div class="bs-label-rule"><h2 id="bs-more-heading" class="bs-label">More writing</h2></div>
+        <div class="bs-list">
+          {% for post in posts offset: 4 limit: 6 %}
+            {% include archive-single.html %}
+          {% endfor %}
+        </div>
+        <p class="bs-more__all"><a class="bs-textlink" href="{{ '/posts/' | relative_url }}">All posts →</a></p>
+      </section>
+      {% endif %}
+    {% endif %}
+
+    {% if home.about %}
+    <section class="bs-about" aria-labelledby="bs-about-heading">
+      <h2 id="bs-about-heading" class="bs-label">{{ home.about.heading }}</h2>
+      <div class="bs-about__body">
+        <p class="bs-about__quote">“{{ home.about.quote }}”</p>
+        <p class="bs-about__text">{{ home.about.text }}</p>
+        {% if home.about.link_url %}<a class="bs-textlink" href="{{ home.about.link_url | relative_url }}">{{ home.about.link_label }} →</a>{% endif %}
+      </div>
+    </section>
+    {% endif %}
+
+    {% if home.sections %}
+    <section class="bs-sections" aria-labelledby="bs-sections-heading">
+      <div class="bs-label-rule"><h2 id="bs-sections-heading" class="bs-label">{{ home.sections.heading }}</h2></div>
+      <div class="bs-sections__grid">
+        {% for item in home.sections.items %}
+        <div class="bs-sections__item">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+  </div>
+</div>

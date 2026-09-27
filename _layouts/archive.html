@@ -1,0 +1,15 @@
+---
+layout: default
+---
+{%- comment -%} Broadsheet wrapper for the theme's archive pages (Posts by year, Posts by tag). {%- endcomment -%}
+<div id="main" role="main" class="bs-archive">
+  <div class="bs-wrap">
+    <header class="bs-article__header">
+      <h1 id="page-title" class="bs-article__title"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>{{ page.title }}</h1>
+      <span class="bs-rule" aria-hidden="true"></span>
+    </header>
+    <div class="bs-archive__body">
+      {{ content }}
+    </div>
+  </div>
+</div>

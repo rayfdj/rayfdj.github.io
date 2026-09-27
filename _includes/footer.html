@@ -1,0 +1,16 @@
+{% comment %} Broadsheet footer. Included with include_cached, so it must not depend on `page`. {% endcomment %}
+<div class="bs-wrap"><div class="bs-footer">
+  <p class="bs-footer__brand">
+    <span class="bs-footer__title">{{ site.title }}</span>
+    <span>&copy; {{ site.time | date: '%Y' }} {{ site.name }}</span>
+  </p>
+  <ul class="bs-footer__links" aria-label="Elsewhere">
+    {%- for link in site.author.links -%}
+    <li><a href="{{ link.url }}" rel="nofollow noopener noreferrer me">{{ link.label }}</a></li>
+    {%- endfor -%}
+    {%- unless site.atom_feed.hide -%}
+    <li><a href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ '/feed.xml' | relative_url }}{% endif %}">Feed</a></li>
+    {%- endunless -%}
+  </ul>
+</div>
+</div>

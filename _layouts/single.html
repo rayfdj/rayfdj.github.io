@@ -1,0 +1,70 @@
+---
+layout: default
+---
+{%- comment -%}
+  Broadsheet article layout for posts and pages. Posts get a kicker (tags), byline,
+  drop cap, contents in the left margin, footnotes as margin notes on wide screens
+  (assets/js/sidenotes.js), previous/next links and comments.
+  Keeps the class names the theme's script relies on: nav.toc (scroll spy) and
+  .page__content (heading anchors).
+{%- endcomment -%}
+{%- assign locale = page.locale | default: layout.locale | default: site.locale -%}
+{%- assign is_post = false -%}
+{%- if page.collection == "posts" -%}{%- assign is_post = true -%}{%- endif -%}
+
+<div id="main" role="main" class="bs-article {% if is_post %}bs-article--post{% else %}bs-article--page{% endif %}">
+  <article class="bs-wrap h-entry" itemscope itemtype="https://schema.org/{% if is_post %}BlogPosting{% else %}CreativeWork{% endif %}"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>
+    {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{% endif %}
+    {% if page.last_modified_at %}<meta itemprop="dateModified" content="{{ page.last_modified_at | date_to_xmlschema }}">{% endif %}
+
+    <header class="bs-article__header">
+      {% if is_post and page.tags.size > 0 %}<p class="bs-kicker">{% include bs-tags.html tags=page.tags link=true %}</p>{% endif %}
+      <h1 id="page-title" class="bs-article__title p-name" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" | strip }}</h1>
+      {% if is_post %}
+      <p class="bs-byline">By <span class="p-author" itemprop="author">{{ site.name }}</span> · <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time> · {% include bs-read-time.html doc=page %}</p>
+      {% endif %}
+      <span class="bs-rule" aria-hidden="true"></span>
+    </header>
+
+    <div class="bs-article__body">
+      {% if page.toc %}
+      <aside class="bs-toc">
+        <nav class="toc" aria-labelledby="bs-toc-heading">
+          <h2 id="bs-toc-heading" class="bs-label">{{ page.toc_label | default: "Contents" }}</h2>
+          {% include toc.html sanitize=true html=content h_min=2 h_max=3 class="toc__menu" skip_no_ids=true %}
+        </nav>
+      </aside>
+      {% endif %}
+      <div class="page__content bs-prose e-content" itemprop="{% if is_post %}articleBody{% else %}text{% endif %}">
+        {{ content }}
+      </div>
+    </div>
+
+    {% if is_post and page.previous or page.next %}
+    <nav class="bs-pager" aria-label="Post pagination">
+      {% if page.previous %}
+      <div class="bs-pager__prev">
+        <p class="bs-label">Previous</p>
+        <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title | markdownify | remove: "<p>" | remove: "</p>" | strip }}</a>
+      </div>
+      {% endif %}
+      {% if page.next %}
+      <div class="bs-pager__next">
+        <p class="bs-label">Next</p>
+        <a href="{{ page.next.url | relative_url }}">{{ page.next.title | markdownify | remove: "<p>" | remove: "</p>" | strip }}</a>
+      </div>
+      {% endif %}
+    </nav>
+    {% endif %}
+
+    {% if site.comments.provider and page.comments %}
+      {% if jekyll.environment == "production" %}
+        {% include comments.html locale=locale %}
+      {% else %}
+        <p class="bs-comments-note">Comments are configured with provider <strong>{{ site.comments.provider }}</strong>, but are disabled in non-production builds.</p>
+      {% endif %}
+    {% endif %}
+  </article>
+</div>
+{% if content contains 'role="doc-endnotes"' %}<script src="{{ '/assets/js/sidenotes.js' | relative_url }}" defer></script>{% endif %}
