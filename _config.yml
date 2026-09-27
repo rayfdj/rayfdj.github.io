@@ -2,7 +2,8 @@
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: "default"
 
-title: "Second-Order Effects"
+title: "The Curious Schemer"
+subtitle: "The following sentence is false. The preceding sentence is true."
 name: "Ray Djajadinata"
 url: "https://rayfdj.dev"
 baseurl: ""

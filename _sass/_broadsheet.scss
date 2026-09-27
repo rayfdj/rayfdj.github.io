@@ -402,6 +402,14 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
+.bs-nameplate__motto {
+  margin: 0.9rem 0 0;
+  font-size: clamp(0.9375rem, 0.85rem + 0.3vw, 1.0625rem);
+  font-style: italic;
+  color: var(--bs-muted);
+  text-wrap: balance;
+}
+
 .bs-nowrap {
   white-space: nowrap;
 }

@@ -13,6 +13,7 @@ layout: default
 
     <header class="bs-nameplate">
       <h1 class="bs-nameplate__title"><span class="bs-nowrap">{{ site.title | split: " " | join: '</span> <span class="bs-nowrap">' }}</span></h1>
+      {% if site.subtitle %}<p class="bs-nameplate__motto">{{ site.subtitle }}</p>{% endif %}
       <p class="bs-dateline">
         <span>{{ site.name }}</span>
         <span>{{ site.url | remove: 'https://' | remove: 'http://' }}</span>
