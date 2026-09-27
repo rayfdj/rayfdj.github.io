@@ -37,6 +37,29 @@
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+/* IBM Plex Mono (SIL Open Font License, see /assets/fonts/IBMPlexMono-OFL.txt), self-hosted, for code. */
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-mono-latin-400-italic.woff2") format("woff2");
+}
+
 :root {
   --bs-paper: #{$background-color};
   --bs-ink: #{$text-color};
@@ -868,8 +891,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   code {
-    padding: 0.1em 0.3em;
-    border-radius: 2px;
+    padding: 0.12em 0.32em;
+    border-radius: 3px;
     background: var(--bs-code);
     font-size: 0.8em;
   }
@@ -877,27 +900,6 @@ h1, h2, h3, h4, h5, h6 {
   pre code {
     padding: 0;
     background: none;
-  }
-
-  div.highlighter-rouge,
-  figure.highlight {
-    margin: 1.6em 0;
-    border: 1px solid var(--bs-rule);
-    border-radius: 2px;
-    font-size: 0.75em;
-    line-height: 1.6;
-
-    > pre,
-    pre.highlight {
-      padding: 1.1em 1.3em;
-    }
-  }
-
-  .highlight,
-  .highlight pre,
-  .highlight code {
-    font-size: 1em;
-    line-height: inherit;
   }
 
   mjx-container[display="true"] {
@@ -952,6 +954,158 @@ h1, h2, h3, h4, h5, h6 {
   .bs-prose table {
     display: block;
     overflow-x: auto;
+  }
+}
+
+/* Code blocks
+   Every block Rouge highlights, in any language: a header strip with the language
+   (data-lang, from _plugins/code_block_labels.rb) and a copy button, marked lines and
+   a dark console frame for terminal sessions (assets/js/code-blocks.js).
+   ========================================================================== */
+
+.bs-prose div.highlighter-rouge,
+.bs-prose figure.highlight {
+  position: relative;
+  margin: 1.75em 0;
+  border: 1px solid var(--bs-rule);
+  border-radius: 4px;
+  background: var(--bs-code);
+  color: var(--bs-ink);
+  font-family: $monospace;
+  font-size: 0.74em;
+  line-height: 1.65;
+  overflow: hidden;
+
+  /* Header strip: the language on the left, the copy button (added by script) on the right */
+  &::before {
+    content: attr(data-lang);
+    display: block;
+    height: 2.75rem;
+    padding: 0 1.3rem;
+    border-bottom: 1px solid var(--bs-rule);
+    font-family: $serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 2.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bs-muted);
+  }
+
+  .highlight,
+  pre,
+  code {
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    font-family: inherit;
+    font-size: 1em;
+    line-height: inherit;
+  }
+
+  pre {
+    position: relative;
+    isolation: isolate;
+    padding: 1.05em 1.3rem 1.15em;
+    overflow-x: auto;
+    tab-size: 4;
+  }
+
+  .c,
+  .c1,
+  .cm,
+  .cs {
+    font-style: italic;
+  }
+
+  .hll {
+    background: none;
+  }
+}
+
+/* The theme lays figures out as flex rows; a code figure is a plain block */
+.bs-prose figure.highlight {
+  display: block;
+}
+
+.bs-code-copy {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  height: 2.75rem;
+  padding: 0 1.3rem;
+  border: 0;
+  background: none;
+  font-family: $serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bs-muted);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--bs-accent);
+  }
+
+  &.is-copied {
+    color: #276b31;
+  }
+
+  &:focus-visible {
+    outline-offset: -6px;
+  }
+}
+
+.bs-code-mark {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  border-left: 3px solid var(--bs-accent);
+  background: rgba(138, 43, 23, 0.08);
+}
+
+/* Terminal sessions: console, terminal and interactive-shell blocks get a dark frame */
+.bs-prose div.language-console,
+.bs-prose div.language-terminal,
+.bs-prose div.language-shell_session,
+.bs-prose div.language-shell-session,
+.bs-prose div.language-irb,
+.bs-prose div.language-pry {
+  border-color: #1d1b17;
+  background: #1d1b17;
+  color: #f5f1e8;
+
+  &::before {
+    border-bottom-color: rgba(245, 241, 232, 0.14);
+    color: #b3a893;
+  }
+
+  .highlight * {
+    color: inherit;
+    font-style: normal;
+  }
+
+  .highlight .gp {
+    color: #e39a82; /* prompt */
+  }
+
+  .highlight .go,
+  .highlight .c,
+  .highlight .c1 {
+    color: #b3a893; /* output and comments */
+  }
+
+  .bs-code-copy {
+    color: #b3a893;
+
+    &:hover,
+    &.is-copied {
+      color: #f5f1e8;
+    }
   }
 }
 
